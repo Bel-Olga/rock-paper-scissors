@@ -1,9 +1,9 @@
 
-const buttons = document.querySelectorAll('.btn');
+const buttons = document.querySelectorAll('.btn-choices');
 const restartButton = document.getElementById('restart');
 let resultDiv = document.getElementById('result');
-let userScoreDiv = document.querySelector('.user-score');
-let compScoreDiv = document.querySelector('.comp-score');
+let scoreDiv = document.querySelector('.score-board');
+
 
 
 
@@ -55,18 +55,19 @@ function playRound(playerSelection) {
   
   if (userScore === 5) {
     disableButtons();
-    result += "You win the game! Press restart to play again."
+  result += `You win the game!<br> Press restart to play again.`
   } else if (computerScore === 5) {
     disableButtons();
-    result += "You lose the game! Press restart to play again."
+    result += `You lose the game!<br> Press restart to play again.`
   }
 
 console.log('user: '+ playerSelection + ' / comp: ' + compSelection);
 
-// Add result to HTML
-resultDiv.textContent = result;
-userScoreDiv.textContent = `${userScore}`;
-compScoreDiv.textContent = `${computerScore}`;
+// Add result and score to HTML
+resultDiv.innerHTML = result;
+scoreDiv.textContent = `${computerScore} : ${userScore}`;
+choicesIcons(playerSelection, compSelection);
+
 
 //Restart game
 restartButton.addEventListener('click', () => {
@@ -76,12 +77,26 @@ restartButton.addEventListener('click', () => {
   userScore = 0;
   computerScore = 0;
 
-  userScoreDiv.textContent = '';
-  compScoreDiv.textContent = '';
+  scoreDiv.textContent = '';
   resultDiv.textContent = '';
-  
+  //need to add choices-icons remove  
 });
+
+//Add choices icons
+function choicesIcons(playerSelection, compSelection) {
+  const userChoice = document.getElementById('user-element');
+  const compChoice = document.getElementById('comp-element');
+
+  userChoice.classList.add('active');
+  compChoice.classList.add('active');
+
+   userChoice.classList = `fa-solid fa-hand-${playerSelection}`;
+   compChoice.classList = `fa-solid fa-hand-${compSelection}`;
 };
+};
+
+
+
 
 
 function game() {
