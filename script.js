@@ -3,6 +3,8 @@ const buttons = document.querySelectorAll('.btn-choices');
 const restartButton = document.getElementById('restart');
 let resultDiv = document.getElementById('result');
 let scoreDiv = document.querySelector('.score-board');
+const userChoice = document.getElementById('user-element');
+const compChoice = document.getElementById('comp-element');
 
 
 
@@ -46,18 +48,20 @@ function playRound(playerSelection) {
             (playerSelection == 'scissors' && compSelection == 'paper')) {
   userScore ++;
   
-  result = "You win! " + playerSelection + " beats " + compSelection + '. ';
+  result = "You win: " + playerSelection + " beats " + compSelection + '. ';
             } else {
   computerScore ++;
-  result = "You lose! " + compSelection + " beats " + playerSelection + '. ';
+  result = "You lose: " + compSelection + " beats " + playerSelection + '. ';
             }
 
   
   if (userScore === 5) {
     disableButtons();
+    restartButton.classList.remove('visually-hidden');  
   result += `You win the game!<br> Press restart to play again.`
   } else if (computerScore === 5) {
     disableButtons();
+    restartButton.classList.remove('visually-hidden');  
     result += `You lose the game!<br> Press restart to play again.`
   }
 
@@ -67,6 +71,7 @@ console.log('user: '+ playerSelection + ' / comp: ' + compSelection);
 resultDiv.innerHTML = result;
 scoreDiv.textContent = `${computerScore} : ${userScore}`;
 choicesIcons(playerSelection, compSelection);
+
 
 
 //Restart game
@@ -79,19 +84,21 @@ restartButton.addEventListener('click', () => {
 
   scoreDiv.textContent = '';
   resultDiv.textContent = '';
-  //need to add choices-icons remove  
+
+  userChoice.classList  = 'fa-solid ';
+  compChoice.classList = 'fa-solid ';
+  restartButton.classList.add('visually-hidden');  
 });
 
 //Add choices icons
 function choicesIcons(playerSelection, compSelection) {
-  const userChoice = document.getElementById('user-element');
-  const compChoice = document.getElementById('comp-element');
+  
 
-  userChoice.classList.add('active');
-  compChoice.classList.add('active');
+//  userChoice.classList.add('active');
+//  compChoice.classList.add('active');
 
-   userChoice.classList = `fa-solid fa-hand-${playerSelection}`;
-   compChoice.classList = `fa-solid fa-hand-${compSelection}`;
+   userChoice.classList = `fa-solid fa-hand-${playerSelection} active`;
+   compChoice.classList = `fa-solid fa-hand-${compSelection} active`;
 };
 };
 
@@ -99,14 +106,15 @@ function choicesIcons(playerSelection, compSelection) {
 
 
 
-function game() {
-    for (let i = 0; i < 5; i++) {
-    if(computerScore > userScore) {
-        return "You loose the game!"
-    } else if (userScore > computerScore) {
-        return "You win the game!"} else {
-            return "It`s a tie!"
-        }
-}        
-    }
+// function game() {
+//     for (let i = 0; i < 5; i++) {
+//     if(computerScore > userScore) {
+//         return "You loose the game!"
+//     } else if (userScore > computerScore) {
+//         return "You win the game!"} else {
+//             return "It`s a tie!"
+//         }
+// } 
+    
+//     }
     

@@ -1,0 +1,82 @@
+
+$blue: #074db6;
+$indigo: #6610f2;
+$purple: #6f42c1;
+
+
+
+
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+* {
+    box-sizing: border-box;
+    font-size: 24px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    background-color: $blue;
+    
+}
+
+.container {
+    @include flexCenter(column);
+    //border: 2px solid black;
+    .container {
+        @include flexCenter(row);
+        justify-content: space-between;
+        width: 400px;
+    }
+    .score-board {
+        @include flexCenter(row);
+    }
+}
+
+.result {
+    min-height: 75px;
+    text-align: center;
+
+}
+
+.user-board, .comp-board {
+    display: flex;
+    flex-direction: column;
+}
+
+.choice {
+    align-self: center;
+   #user-element, #comp-element 
+   { color: $blue;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+    .active {
+        filter: drop-shadow(0 0 20px rgb(123, 141, 243));
+    }
+   
+}
+
+.choices {
+   //padding-left: 50px;
+   align-self: center;
+    .btn{
+        margin: 20px 0 15px 0;
+        border-radius: 50%;
+        
+    }
+    .btn:active {
+        
+    }
+    
+}
+
+.restart {
+    align-self: center;
+}
+
