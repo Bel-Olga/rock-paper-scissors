@@ -5,8 +5,7 @@ let resultDiv = document.getElementById('result');
 let scoreDiv = document.querySelector('.score-board');
 const userChoice = document.getElementById('user-element');
 const compChoice = document.getElementById('comp-element');
-
-
+const title = document.querySelector('.title');
 
 
 let userScore = 0;
@@ -58,11 +57,13 @@ function playRound(playerSelection) {
   if (userScore === 5) {
     disableButtons();
     restartButton.classList.remove('visually-hidden');  
-  result += `You win the game!<br> Press restart to play again.`
+    result += `You win the game!<br> Press restart to play again.`;
+    title.style.color = "rgb(27, 189, 27)";
   } else if (computerScore === 5) {
     disableButtons();
     restartButton.classList.remove('visually-hidden');  
-    result += `You lose the game!<br> Press restart to play again.`
+    result += `You lose the game!<br> Press restart to play again.`;
+    title.style.color = "red";
   }
 
 console.log('user: '+ playerSelection + ' / comp: ' + compSelection);
@@ -88,14 +89,13 @@ restartButton.addEventListener('click', () => {
   userChoice.classList  = 'fa-solid ';
   compChoice.classList = 'fa-solid ';
   restartButton.classList.add('visually-hidden');  
+
+  title.style.color = 'white';
 });
 
 //Add choices icons
 function choicesIcons(playerSelection, compSelection) {
   
-
-//  userChoice.classList.add('active');
-//  compChoice.classList.add('active');
 
    userChoice.classList = `fa-solid fa-hand-${playerSelection} active`;
    compChoice.classList = `fa-solid fa-hand-${compSelection} active`;

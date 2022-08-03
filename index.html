@@ -14,19 +14,18 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>ROCK, PAPER, SCISSORS</h1>
+    <h1 class="title">ROCK, PAPER, SCISSORS</h1>
     <div class="container" id="cont">
 
         <div class="result" id="result"></div>
 
-        <div class="container"> 
+    <div class="container-small"> 
             <div class="comp-board">
-            <p>Computer:</p> 
-            <div class="choice">
-                <i id="comp-element" class="fa-solid"></i>
+                <p>Computer:</p> 
+                <div class="choice">
+                    <i id="comp-element" class="fa-solid"></i>
+                </div>    
             </div>
-            
-        </div>
         <div class="score-board"></div>
         <div class="user-board" > 
             <p>Player:</p> 
@@ -44,7 +43,7 @@
     </div>
     
       
-    <button class="restart btn btn-outline-primary " id="restart">restart</button>
+    <button class="restart btn btn-outline-primary visually-hidden" id="restart">restart</button>
   </div>  
   <script src="/script.js"></script>
 </body>
