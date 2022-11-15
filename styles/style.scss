@@ -46,9 +46,29 @@ $purple: #6f42c1;
 .result {
     min-height: 75px;
     text-align: center;
-
 }
 
+.result-win {
+    font-weight: bold;
+    -webkit-animation: color-animation-win 3s ease-in-out; 
+}
+
+@-webkit-keyframes color-animation-win {
+    0%   { color: #000; } 
+    50%  { color: rgb(27, 189, 27) }
+    100% { color: #000; }
+}
+
+.result-lose {
+    font-weight: bold;
+    -webkit-animation: color-animation-lose 3s ease-in-out; 
+}
+
+@-webkit-keyframes color-animation-lose {
+    0%   { color: #000; } 
+    50%  { color: red }
+    100% { color: #000; }
+}
 .user-board, .comp-board {
     display: flex;
     flex-direction: column;

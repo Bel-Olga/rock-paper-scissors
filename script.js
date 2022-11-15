@@ -5,6 +5,7 @@ const compChoice = document.getElementById('comp-element');
 const title = document.querySelector('.title');
 const resultDiv = document.getElementById('result');
 const scoreDiv = document.querySelector('.score-board');
+const resultGameDiv = document.getElementById('game-result');
 
 const choices = ['rock', 'paper', 'scissors'];
 
@@ -18,7 +19,7 @@ const handleChoicesIcons = (playerSelection, compSelection) => {
 };
 
 const renderGameResult = (playerSelection, compSelection, result) => {
-  resultDiv.innerHTML = result;
+  resultDiv.textContent = result;
   scoreDiv.textContent = `${computerScore} : ${userScore}`;
   handleChoicesIcons(playerSelection, compSelection);
 }
@@ -51,26 +52,34 @@ const handleRestartGame = () => {
 
   scoreDiv.textContent = '';
   resultDiv.textContent = '';
+  resultGameDiv.textContent = '';
 
   userChoice.classList = 'fa-solid ';
   compChoice.classList = 'fa-solid ';
   restartButton.classList.add('visually-hidden');
+  resultGameDiv.classList.remove('result-win', 'result-lose');
 
   title.style.color = 'white';
 }
 
-const handleEndGameResult = (userScore, computerScore) => {
+const handleEndGameResult = (userScore, computerScore, result) => {
+
   if (userScore === 5) {
     restartButton.classList.remove('visually-hidden');
-    result += `You win the game!<br> Press restart to play again.`;
+    resultGameDiv.textContent = `You win the game! Press restart to play again.`;
     title.style.color = "rgb(27, 189, 27)";
+    resultGameDiv.classList.add('result-win');
+    
   } else if (computerScore === 5) {
     restartButton.classList.remove('visually-hidden');
-    result += `You lose the game!<br> Press restart to play again.`;
+    resultGameDiv.textContent = `You lose the game! Press restart to play again.`;
     title.style.color = "red";
+    resultGameDiv.classList.add('result-lose');
+    
   }
 
   disableButtons();
+
 }
 
 // Game
@@ -88,7 +97,9 @@ function playRound(playerSelection) {
     result = `You lose: ${compSelection} beats ${playerSelection}`;
   }
 
-  if (userScore === 5 || computerScore === 5) handleEndGameResult(userScore, computerScore);
+  if (userScore === 5 || computerScore === 5) {
+    handleEndGameResult(userScore, computerScore, result);
+  }
 
   console.log('user: ' + playerSelection + ' / comp: ' + compSelection);
   
